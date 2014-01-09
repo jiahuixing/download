@@ -1,5 +1,3 @@
-import os
-
 __author__ = 'jiahuixing'
 # -*- coding: utf-8 -*-
 
@@ -7,6 +5,7 @@ import time
 import sys
 import urllib
 import re
+import os
 
 MAIN_PAGE = 'http://ota.n.miui.com/ota/'
 
@@ -73,7 +72,7 @@ def runScript():
                     if tar:
                         print('tar=%s' % tar)
                         url = MAIN_PAGE + version + '/' + tar
-                        debug('url=%s'%url)
+                        debug('url=%s' % url)
                         if not os.path.exists(tar):
                             toDownFile(url)
                             flashDevice(tar)
@@ -147,15 +146,16 @@ def setNum(num):
     global choose_num
     choose_num = num
 
+
 def toDownFile(url):
     down = DOWNLOAD + url
-    debug('down=%s'%down)
+    debug('down=%s' % down)
     os.system(down)
+
 
 def flashDevice(tar):
     flash = FLASH + tar
-    debug('flash=%s'%flash)
+    debug('flash=%s' % flash)
     os.system(flash)
-
 
 runScript()
