@@ -20,6 +20,3 @@ def getDate():
         version = year + block + mon + block + day
     return version
 
-
-def test():
-    pass
