@@ -9,10 +9,19 @@ TYPE_STR = 'str'
 
 
 def debug(msg):
+    """
+
+    :param msg:
+    """
     print('******%s******' % msg)
 
 
 def getDate():
+    """
+
+
+    :return:
+    """
     if len(sys.argv) > 1:
         version = sys.argv[1]
     else:
@@ -26,6 +35,12 @@ def getDate():
 
 
 def inputValue(input_length=1, input_type=TYPE_INT):
+    """
+
+    :param input_length:
+    :param input_type:
+    :return:
+    """
     debug('input_type=%s' % input_type)
     input_info = sys.stdin.read(input_length)
     if input_type == TYPE_INT:
@@ -41,18 +56,36 @@ def inputValue(input_length=1, input_type=TYPE_INT):
 
 
 def setNumValue(value=0):
+    """
+
+    :param value:
+    """
     global num
     num = value
 
 
 def getNumValue():
+    """
+
+
+    :return:
+    """
     return num
 
 
 def setStrValue(value=''):
+    """
+
+    :param value:
+    """
     global string
     string = value
 
 
 def getStrValue():
+    """
+
+
+    :return:
+    """
     return string

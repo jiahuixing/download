@@ -34,9 +34,10 @@ IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 
 
 def runScript():
-    '''
-    open url
-    '''
+    """
+
+
+    """
     version = getDate()
     web = urllib.urlopen(MAIN_PAGE).read()
 
@@ -66,6 +67,12 @@ def runScript():
 
 
 def findTar(num, line):
+    """
+
+    :param num:
+    :param line:
+    :return:
+    """
     choose = CHOOSE[num - 1]
     version = getDate()
     tar_name = choose + MID + version + IMAGES_SUF
@@ -82,6 +89,10 @@ def findTar(num, line):
 
 
 def judgeInput(choose_type=CHOOSE_T_IN):
+    """
+
+    :param choose_type:
+    """
     debug(choose_type)
     try:
         if len(CHOOSE) > 9:
@@ -121,12 +132,20 @@ def judgeInput(choose_type=CHOOSE_T_IN):
 
 
 def toDownFile(url):
+    """
+
+    :param url:
+    """
     down = DOWNLOAD + url
     debug('down=%s' % down)
     os.system(down)
 
 
 def flashDevice(tar):
+    """
+
+    :param tar:
+    """
     flash = FLASH + tar
     debug('flash=%s' % flash)
     os.system(flash)
