@@ -1,0 +1,20 @@
+#!/bin/bash
+
+m2_ct_userdata_pre="aries_chinatelecom_images_"
+m2_cu_userdata_pre="aries_chinaunicom_images_"
+m2a_cu_userdata_pre="aries_chinatelecom_images_"
+userdata_suf="_4.1.tar"
+
+mi2_images_pre="aries_images_"
+mi2a_images_pre="taurus_images_"
+images_suf="_4.1_*.tar"
+
+if [[ $#>0 ]]; then
+	#statements
+	version="$1"
+	echo "verson="$version
+	line=`ls | grep "^d"`
+	echo "$line"
+else
+	echo "请输入版本号(如：“/data/ota/JLB25.0/ ”)"
+fi

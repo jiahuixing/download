@@ -1,0 +1,15 @@
+#!/bin/bash
+
+count=50
+monkey_times=50000
+music_player_pac="com.miui.player"
+for (( i = 0; i < "$count"; i++ )); do
+	#statements
+	echo "--------------------------------------"
+	echo $i
+	rnd=$RANDOM
+	echo "rnd=$rnd"
+	adb shell monkey --kill-process-after-error -s "$rnd" --bugreport -p "$music_player_pac" "$monkey_times"
+	python killmonkey.py
+	echo "--------------------------------------"
+done

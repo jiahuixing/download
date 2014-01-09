@@ -1,0 +1,4 @@
+#!/bin/bash
+flash="aries_alpha_images_3.12.6_4.1_40853dd8b6.tar"
+sub=${flash%_*}
+echo "$sub"

@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "test"
+URL="http://ota.n.miui.com/ota/3.8.7/"
+RETURN=`curl -o /dev/null -s -w “%{http_code}” “${URL}”`
+echo "$RETURN"

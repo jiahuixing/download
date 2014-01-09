@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $#>0 ]]; then
+	#statements
+	
+else
+	echo "请输入版本号(如：“/data/ota/JLB25.0/ ”)"
+fi
