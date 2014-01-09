@@ -154,7 +154,6 @@ def toDownFile(url):
 def flashDevice(tar):
     flash = FLASH + tar
     debug('flash=%s'%flash)
-
     os.system(flash)
 
 downTar()
