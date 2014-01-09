@@ -52,7 +52,7 @@ def getDate():
     return version
 
 
-def downTar():
+def runScript():
     '''
     open url
     '''
@@ -76,6 +76,7 @@ def downTar():
                         debug('url=%s'%url)
                         if not os.path.exists(tar):
                             toDownFile(url)
+                            flashDevice(tar)
                         else:
                             debug('exists')
                         break
@@ -156,4 +157,5 @@ def flashDevice(tar):
     debug('flash=%s'%flash)
     os.system(flash)
 
-downTar()
+
+runScript()
