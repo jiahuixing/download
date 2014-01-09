@@ -19,3 +19,4 @@ def getDate():
         day = str(int(day))
         version = year + block + mon + block + day
     return version
+
