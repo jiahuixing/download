@@ -2,10 +2,13 @@ __author__ = 'tracy'
 
 import sys
 import time
-
+import os
 
 TYPE_INT = 'int'
 TYPE_STR = 'str'
+
+TIME_HMS = 'hms'
+TIME_YMD = 'ymd'
 
 
 def debug(msg):
@@ -89,3 +92,31 @@ def getStrValue():
     :return:
     """
     return string
+
+
+def runCommand(cmd):
+    """
+
+    :param cmd:
+    """
+    os.system(cmd)
+
+
+def getSysArgv(index):
+    """
+
+    :param index:
+    """
+    return sys.argv[index - 1]
+
+
+def getTime(time_type=TIME_HMS):
+    """
+
+    :param time_type:
+    """
+    block = '-'
+    if time_type == TIME_HMS:
+        return (time.strftime('%H') + block + time.strftime('%M') + block + time.strftime('%S'))
+    elif time_type == TIME_YMD:
+        return (time.strftime('%Y') + block + time.strftime('%m') + block + time.strftime('%d'))
