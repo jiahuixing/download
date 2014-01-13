@@ -2,10 +2,12 @@ __author__ = 'jiahuixing'
 # -*- coding: utf-8 -*-
 
 import urllib
+import socket
 import re
 
 from commonLib import *
 
+TIMEOUT = 5
 MAIN_PAGE = 'http://ota.n.miui.com/ota/'
 
 CHOOSE_T_SYS = 'sys.argv'
@@ -37,31 +39,36 @@ def runScript():
 
     """
     version = getDate()
-    web = urllib.urlopen(MAIN_PAGE).read()
+    socket.setdefaulttimeout(TIMEOUT)
+    try:
 
-    if version in web:
-        debug('Find version.')
-        judgeInput(CHOOSE_T_SYS)
-        num = getNumValue()
-        debug('num=%s' % num)
-        if num:
-            page = MAIN_PAGE + version
-            web = urllib.urlopen(page).readlines()
-            for line in web:
-                if '.tar' in line:
-                    tar = findTar(num, line)
-                    if tar:
-                        print('tar=%s' % tar)
-                        url = MAIN_PAGE + version + '/' + tar
-                        debug('url=%s' % url)
-                        if not os.path.exists(tar):
-                            toDownFile(url)
-                            flashDevice(tar)
-                        else:
-                            debug('exists')
-                        break
-    else:
-        debug('Version not found.')
+        web = urllib.urlopen(MAIN_PAGE).read()
+
+        if version in web:
+            debug('Find version.')
+            judgeInput(CHOOSE_T_SYS)
+            num = getNumValue()
+            debug('num=%s' % num)
+            if num:
+                page = MAIN_PAGE + version
+                web = urllib.urlopen(page).readlines()
+                for line in web:
+                    if '.tar' in line:
+                        tar = findTar(num, line)
+                        if tar:
+                            print('tar=%s' % tar)
+                            url = MAIN_PAGE + version + '/' + tar
+                            debug('url=%s' % url)
+                            if not os.path.exists(tar):
+                                toDownFile(url)
+                                flashDevice(tar)
+                            else:
+                                debug('exists')
+                            break
+        else:
+            debug('Version not found.')
+    except IOError, err:
+        debug(err)
 
 
 def findTar(num, line):
