@@ -16,6 +16,9 @@ CHOOSE_T_IN = 'input'
 DOWNLOAD = 'wget '
 FLASH = './flash.sh '
 
+MID = 'images_'
+
+#机型
 X1 = 'mione_plus_'
 X2 = 'aries_'
 X2_ALPHA = 'aries_alpha_'
@@ -25,9 +28,6 @@ X3_TD = 'pisces_'
 X3_W = 'cancro_'
 HM2_TD = 'wt93007_'
 HM2_W = 'HM2013023_'
-
-MID = 'images_'
-
 CHOOSE = [X1, X2, X2_ALPHA, X2A, X2A_ALPHA, X3_TD, X3_W, HM2_TD, HM2_W]
 
 IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
