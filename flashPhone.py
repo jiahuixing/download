@@ -1,10 +1,8 @@
 __author__ = 'jiahuixing'
 # -*- coding: utf-8 -*-
 
-import sys
 import urllib
 import re
-import os
 
 from commonLib import *
 

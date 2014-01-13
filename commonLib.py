@@ -99,6 +99,7 @@ def runCommand(cmd):
 
     :param cmd:
     """
+    debug(__name__)
     os.system(cmd)
 
 
@@ -117,6 +118,14 @@ def getTime(time_type=TIME_HMS):
     """
     block = '-'
     if time_type == TIME_HMS:
-        return (time.strftime('%H') + block + time.strftime('%M') + block + time.strftime('%S'))
+        hour = time.strftime('%H')
+        mini = time.strftime('%M')
+        sec = time.strftime('%S')
+        hms = hour + block + mini + block + sec
+        return hms
     elif time_type == TIME_YMD:
-        return (time.strftime('%Y') + block + time.strftime('%m') + block + time.strftime('%d'))
+        year = time.strftime('%Y')
+        month = time.strftime('%m')
+        day = time.strftime('%d')
+        ymd = year + block + month + block + day
+        return ymd
