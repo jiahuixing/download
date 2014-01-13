@@ -99,7 +99,6 @@ def runCommand(cmd):
 
     :param cmd:
     """
-    debug(__name__)
     os.system(cmd)
 
 
