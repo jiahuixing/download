@@ -40,7 +40,7 @@ def flash_phone():
                             run_script(tar)
                             break
         else:
-            debug('Version not found.')
+            debug('Did not find this version.')
     except IOError, err:
         debug(err)
 
@@ -59,7 +59,7 @@ def find_tar(num, line):
     pat = re.compile(tar_name)
     result = re.search(pat, line)
     if result:
-        debug('find it')
+        debug('Find it')
         tar = result.group()
     else:
         #debug('cant find it')
