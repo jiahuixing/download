@@ -33,7 +33,7 @@ CHOOSE = [X1, X2, X2_ALPHA, X2A, X2A_ALPHA, X3_TD, X3_W, HM2_TD, HM2_W]
 IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 
 
-def run_script():
+def flash_phone():
     """
 
 
@@ -156,4 +156,4 @@ def flash_device(tar):
     run_command(flash)
 
 
-run_script()
+flash_phone()
