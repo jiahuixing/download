@@ -107,18 +107,8 @@ def judge_input(choose_type=CHOOSE_T_IN):
         if len(sys.argv) > 2 and choose_type == CHOOSE_T_SYS:
             m_input = sys.argv[2][:read_len]
         else:
-            info = (
-                '''Pls choose the num to down the tar:
-1.mione
-2.aries
-3.aries_alpha
-4.taurus
-5.taurus_alpha
-6.pisces
-7.cancro
-8.wt93007
-9.HM2013023
-        ''')
+            info = 'Pls choose the num to down the tar:\n'
+            info = get_info(info, CHOOSE)
             print(info)
             m_input = sys.stdin.read(read_len)
         if m_input.isdigit():

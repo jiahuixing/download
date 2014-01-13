@@ -128,3 +128,34 @@ def get_time(time_type=TIME_HMS):
         day = time.strftime('%d')
         ymd = year + block + month + block + day
         return ymd
+
+
+def get_index(ele, list_name=None):
+    """
+
+    @param ele:
+    @param list_name:
+    """
+    if not list_name: list_name = []
+    index = None
+    if ele in list_name:
+        for mem in list_name:
+            if mem == ele:
+                index = list_name.index(mem) + 1
+                break
+    else:
+        index = None
+    return index
+
+
+def get_info(info, list_name):
+    m_info = info
+    wrap = '\n'
+    for mem in list_name:
+        index = get_index(mem, list_name)
+        m_info = '%s%s:%s%s' % (m_info, index, mem, wrap)
+
+    return m_info
+
+
+
