@@ -149,6 +149,12 @@ def get_index(ele, list_name=None):
 
 
 def get_info(info, list_name):
+    """
+
+    @param info:
+    @param list_name:
+    @return:
+    """
     m_info = info
     wrap = '\n'
     for mem in list_name:
