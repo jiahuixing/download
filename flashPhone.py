@@ -80,22 +80,23 @@ def judge_input(choose_type=CHOOSE_T_IN):
             read_len = 1
         if len(sys.argv) > 2 and choose_type == CHOOSE_T_SYS:
             m_input = sys.argv[2][:read_len]
+            set_num_value(m_input)
         else:
             info = 'Pls choose the num to down the tar:\n'
             info = get_info(info, CHOOSE)
             print(info)
             m_input = sys.stdin.read(read_len)
-        if m_input.isdigit():
-            m_input = int(m_input)
-            if m_input in range(1, len(CHOOSE) + 1):
-                debug('m_input=%s' % m_input)
-                set_num_value(m_input)
+            if m_input.isdigit():
+                m_input = int(m_input)
+                if m_input in range(1, len(CHOOSE) + 1):
+                    debug('m_input=%s' % m_input)
+                    set_num_value(m_input)
+                else:
+                    debug('Pls input num in %s--%s.' % (1, len(CHOOSE)))
+                    judge_input()
             else:
-                debug('Pls input num in %s--%s.' % (1, len(CHOOSE)))
+                debug('Not a valid num,pls re input')
                 judge_input()
-        else:
-            debug('Not a valid num,pls re input')
-            judge_input()
     except KeyboardInterrupt:
         debug('Interrupt')
 

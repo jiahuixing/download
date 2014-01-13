@@ -79,12 +79,12 @@ def input_value(input_length=1, input_type=TYPE_INT):
     input_info = sys.stdin.read(input_length)
     if input_type == TYPE_INT:
         if input_info.isdigit():
-            return input_info
+            set_num_value(int(input_info))
         else:
             input_value(input_length, input_type)
     elif input_type == TYPE_STR:
-        if input_type in ['']:
-            return input_info
+        if input_type.isalpha():
+            set_str_value(input_info)
         else:
             input_value(input_length, input_type)
 
