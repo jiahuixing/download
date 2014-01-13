@@ -19,7 +19,7 @@ def debug(msg):
     print('******%s******' % msg)
 
 
-def getDate():
+def get_date():
     """
 
 
@@ -37,7 +37,7 @@ def getDate():
     return version
 
 
-def inputValue(input_length=1, input_type=TYPE_INT):
+def input_value(input_length=1, input_type=TYPE_INT):
     """
 
     :param input_length:
@@ -50,15 +50,15 @@ def inputValue(input_length=1, input_type=TYPE_INT):
         if input_info.isdigit():
             return input_info
         else:
-            inputValue(input_length, input_type)
+            input_value(input_length, input_type)
     elif input_type == TYPE_STR:
         if input_type in ['']:
             return input_info
         else:
-            inputValue(input_length, input_type)
+            input_value(input_length, input_type)
 
 
-def setNumValue(value=0):
+def set_num_value(value=0):
     """
 
     :param value:
@@ -67,7 +67,7 @@ def setNumValue(value=0):
     num = value
 
 
-def getNumValue():
+def get_num_value():
     """
 
 
@@ -76,7 +76,7 @@ def getNumValue():
     return num
 
 
-def setStrValue(value=''):
+def set_str_value(value=''):
     """
 
     :param value:
@@ -85,7 +85,7 @@ def setStrValue(value=''):
     string = value
 
 
-def getStrValue():
+def get_str_value():
     """
 
 
@@ -94,7 +94,7 @@ def getStrValue():
     return string
 
 
-def runCommand(cmd):
+def run_command(cmd):
     """
 
     :param cmd:
@@ -102,7 +102,7 @@ def runCommand(cmd):
     os.system(cmd)
 
 
-def getSysArgv(index):
+def get_sys_argv(index):
     """
 
     :param index:
@@ -110,7 +110,7 @@ def getSysArgv(index):
     return sys.argv[index - 1]
 
 
-def getTime(time_type=TIME_HMS):
+def get_time(time_type=TIME_HMS):
     """
 
     :param time_type:

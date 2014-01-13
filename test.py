@@ -2,8 +2,8 @@ __author__ = 'tracy'
 
 from commonLib import *
 
-xxx = getTime(TIME_YMD)
-yyy = getTime(TIME_HMS)
+xxx = get_time(TIME_YMD)
+yyy = get_time(TIME_HMS)
 
 debug(xxx)
 debug(yyy)

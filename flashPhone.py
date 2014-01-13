@@ -33,12 +33,12 @@ CHOOSE = [X1, X2, X2_ALPHA, X2A, X2A_ALPHA, X3_TD, X3_W, HM2_TD, HM2_W]
 IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 
 
-def runScript():
+def run_script():
     """
 
 
     """
-    version = getDate()
+    version = get_date()
     socket.setdefaulttimeout(TIMEOUT)
     try:
 
@@ -46,22 +46,22 @@ def runScript():
 
         if version in web:
             debug('Find version.')
-            judgeInput(CHOOSE_T_SYS)
-            num = getNumValue()
+            judge_input(CHOOSE_T_SYS)
+            num = get_num_value()
             debug('num=%s' % num)
             if num:
                 page = MAIN_PAGE + version
                 web = urllib.urlopen(page).readlines()
                 for line in web:
                     if '.tar' in line:
-                        tar = findTar(num, line)
+                        tar = find_tar(num, line)
                         if tar:
                             print('tar=%s' % tar)
                             url = MAIN_PAGE + version + '/' + tar
                             debug('url=%s' % url)
                             if not os.path.exists(tar):
-                                toDownFile(url)
-                                flashDevice(tar)
+                                to_download_file(url)
+                                flash_device(tar)
                             else:
                                 debug('exists')
                             break
@@ -71,7 +71,7 @@ def runScript():
         debug(err)
 
 
-def findTar(num, line):
+def find_tar(num, line):
     """
 
     :param num:
@@ -79,7 +79,7 @@ def findTar(num, line):
     :return:
     """
     choose = CHOOSE[num - 1]
-    version = getDate()
+    version = get_date()
     tar_name = choose + MID + version + IMAGES_SUF
     #    debug('tar_name=%s'%tar_name)
     pat = re.compile(tar_name)
@@ -93,7 +93,7 @@ def findTar(num, line):
     return tar
 
 
-def judgeInput(choose_type=CHOOSE_T_IN):
+def judge_input(choose_type=CHOOSE_T_IN):
     """
 
     :param choose_type:
@@ -125,35 +125,35 @@ def judgeInput(choose_type=CHOOSE_T_IN):
             m_input = int(m_input)
             if m_input in range(1, len(CHOOSE) + 1):
                 debug('m_input=%s' % m_input)
-                setNumValue(m_input)
+                set_num_value(m_input)
             else:
                 debug('Pls input num in %s--%s.' % (1, len(CHOOSE)))
-                judgeInput()
+                judge_input()
         else:
             debug('Not a valid num,pls re input')
-            judgeInput()
+            judge_input()
     except KeyboardInterrupt:
         debug('Interrupt')
 
 
-def toDownFile(url):
+def to_download_file(url):
     """
 
     :param url:
     """
     down = DOWNLOAD + url
     debug('down=%s' % down)
-    runCommand(down)
+    run_command(down)
 
 
-def flashDevice(tar):
+def flash_device(tar):
     """
 
     :param tar:
     """
     flash = FLASH + tar
     debug('flash=%s' % flash)
-    runCommand(flash)
+    run_command(flash)
 
 
-runScript()
+run_script()
