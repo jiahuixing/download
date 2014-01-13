@@ -127,17 +127,17 @@ def get_time(time_type=TIME_HMS):
         return ymd
 
 
-def get_index(ele, list_name=None):
+def get_index(element, list_name=None):
     """
 
-    @param ele:
+    @param element:
     @param list_name:
     """
     if not list_name: list_name = []
     index = None
-    if ele in list_name:
+    if element in list_name:
         for mem in list_name:
-            if mem == ele:
+            if mem == element:
                 index = list_name.index(mem) + 1
                 break
     else:
