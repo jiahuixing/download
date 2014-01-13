@@ -30,14 +30,14 @@ def flash_phone():
                     if '.tar' in line:
                         tar = find_tar(num, line)
                         if tar:
-                            print('tar=%s' % tar)
+                            debug('tar=%s' % tar)
                             url = MAIN_PAGE + version + '/' + tar
                             debug('url=%s' % url)
                             if not os.path.exists(tar):
                                 to_download_file(url)
-                                flash_device(tar)
                             else:
-                                debug('exists')
+                                debug('tar exists')
+                            run_script(tar)
                             break
         else:
             debug('Version not found.')
@@ -84,7 +84,7 @@ def judge_input(choose_type=CHOOSE_T_IN):
         else:
             info = 'Pls choose the num to down the tar:\n'
             info = get_info(info, CHOOSE)
-            print(info)
+            debug(info)
             m_input = sys.stdin.read(read_len)
             if m_input.isdigit():
                 m_input = int(m_input)
@@ -111,7 +111,7 @@ def to_download_file(url):
     run_command(down)
 
 
-def flash_device(tar):
+def run_script(tar):
     """
 
     :param tar:
