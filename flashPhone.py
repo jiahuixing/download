@@ -136,7 +136,7 @@ def toDownFile(url):
     """
     down = DOWNLOAD + url
     debug('down=%s' % down)
-    os.system(down)
+    runCommand(down)
 
 
 def flashDevice(tar):
@@ -146,7 +146,7 @@ def flashDevice(tar):
     """
     flash = FLASH + tar
     debug('flash=%s' % flash)
-    os.system(flash)
+    runCommand(flash)
 
 
 runScript()
