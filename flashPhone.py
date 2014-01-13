@@ -1,11 +1,12 @@
 __author__ = 'jiahuixing'
 # -*- coding: utf-8 -*-
 
-import time
 import sys
 import urllib
 import re
 import os
+
+from commonLib import *
 
 MAIN_PAGE = 'http://ota.n.miui.com/ota/'
 
@@ -32,34 +33,18 @@ CHOOSE = [X1, X2, X2_ALPHA, X2A, X2A_ALPHA, X3_TD, X3_W, HM2_TD, HM2_W]
 IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 
 
-def debug(msg):
-    print('******%s******' % msg)
-
-
-def getDate():
-    if len(sys.argv) > 1:
-        version = sys.argv[1]
-    else:
-        block = '.'
-        year, mon, day = time.strftime('%Y'), time.strftime('%m'), time.strftime('%d')
-        year = year[-1]
-        mon = str(int(mon))
-        day = str(int(day))
-        version = year + block + mon + block + day
-    return version
-
-
 def runScript():
-    '''
-    open url
-    '''
+    """
+
+
+    """
     version = getDate()
     web = urllib.urlopen(MAIN_PAGE).read()
 
     if version in web:
         debug('Find version.')
         judgeInput(CHOOSE_T_SYS)
-        num = choose_num
+        num = getNumValue()
         debug('num=%s' % num)
         if num:
             page = MAIN_PAGE + version
@@ -82,6 +67,12 @@ def runScript():
 
 
 def findTar(num, line):
+    """
+
+    :param num:
+    :param line:
+    :return:
+    """
     choose = CHOOSE[num - 1]
     version = getDate()
     tar_name = choose + MID + version + IMAGES_SUF
@@ -94,10 +85,14 @@ def findTar(num, line):
     else:
         #debug('cant find it')
         tar = ''
-    return  tar
+    return tar
 
 
 def judgeInput(choose_type=CHOOSE_T_IN):
+    """
+
+    :param choose_type:
+    """
     debug(choose_type)
     try:
         if len(CHOOSE) > 9:
@@ -125,7 +120,7 @@ def judgeInput(choose_type=CHOOSE_T_IN):
             m_input = int(m_input)
             if m_input in range(1, len(CHOOSE) + 1):
                 debug('m_input=%s' % m_input)
-                setNum(m_input)
+                setNumValue(m_input)
             else:
                 debug('Pls input num in %s--%s.' % (1, len(CHOOSE)))
                 judgeInput()
@@ -136,24 +131,24 @@ def judgeInput(choose_type=CHOOSE_T_IN):
         debug('Interrupt')
 
 
-def getNum():
-    return choose_num
-
-
-def setNum(num):
-    global choose_num
-    choose_num = num
-
-
 def toDownFile(url):
+    """
+
+    :param url:
+    """
     down = DOWNLOAD + url
     debug('down=%s' % down)
     os.system(down)
 
 
 def flashDevice(tar):
+    """
+
+    :param tar:
+    """
     flash = FLASH + tar
     debug('flash=%s' % flash)
     os.system(flash)
+
 
 runScript()
