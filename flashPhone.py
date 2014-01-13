@@ -7,18 +7,17 @@ import re
 
 from commonLib import *
 
+#参数
 TIMEOUT = 5
 MAIN_PAGE = 'http://ota.n.miui.com/ota/'
-
 CHOOSE_T_SYS = 'sys.argv'
 CHOOSE_T_IN = 'input'
 
-DOWNLOAD = 'wget '
-FLASH = './flash.sh '
+#shell 命令
+DOWNLOAD_COMMAND = 'wget '
+FLASH_SCRIPT = './flash.sh '
 
-MID = 'images_'
-
-#机型
+#机型信息
 X1 = 'mione_plus_'
 X2 = 'aries_'
 X2_ALPHA = 'aries_alpha_'
@@ -28,8 +27,13 @@ X3_TD = 'pisces_'
 X3_W = 'cancro_'
 HM2_TD = 'wt93007_'
 HM2_W = 'HM2013023_'
+
 CHOOSE = [X1, X2, X2_ALPHA, X2A, X2A_ALPHA, X3_TD, X3_W, HM2_TD, HM2_W]
 
+MIDDLE = 'images_'
+
+
+#re匹配
 IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 
 
@@ -80,7 +84,7 @@ def find_tar(num, line):
     """
     choose = CHOOSE[num - 1]
     version = get_date()
-    tar_name = choose + MID + version + IMAGES_SUF
+    tar_name = choose + MIDDLE + version + IMAGES_SUF
     #    debug('tar_name=%s'%tar_name)
     pat = re.compile(tar_name)
     result = re.search(pat, line)
@@ -131,7 +135,7 @@ def to_download_file(url):
 
     :param url:
     """
-    down = DOWNLOAD + url
+    down = DOWNLOAD_COMMAND + url
     debug('down=%s' % down)
     run_command(down)
 
@@ -141,7 +145,7 @@ def flash_device(tar):
 
     :param tar:
     """
-    flash = FLASH + tar
+    flash = FLASH_SCRIPT + tar
     debug('flash=%s' % flash)
     run_command(flash)
 
