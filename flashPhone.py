@@ -15,9 +15,7 @@ def flash_phone():
     version = get_date()
     socket.setdefaulttimeout(TIMEOUT)
     try:
-
         web = urllib.urlopen(INNER_MAIN_PAGE).read()
-
         if version in web:
             debug('Find version.')
             judge_input(CHOOSE_T_SYS)
