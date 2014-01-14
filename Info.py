@@ -11,7 +11,8 @@ TIME_YMD = 'ymd'
 
 #参数
 TIMEOUT = 5
-MAIN_PAGE = 'http://ota.n.miui.com/ota/'
+INNER_MAIN_PAGE = 'http://ota.n.miui.com/ota/'
+OUTER_MAIN_PAGE = 'http://bigota.d.miui.com/'
 CHOOSE_T_SYS = 'sys.argv'
 CHOOSE_T_IN = 'input'
 

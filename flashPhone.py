@@ -16,7 +16,7 @@ def flash_phone():
     socket.setdefaulttimeout(TIMEOUT)
     try:
 
-        web = urllib.urlopen(MAIN_PAGE).read()
+        web = urllib.urlopen(INNER_MAIN_PAGE).read()
 
         if version in web:
             debug('Find version.')
@@ -24,14 +24,14 @@ def flash_phone():
             num = get_num_value()
             debug('num=%s' % num)
             if num:
-                page = MAIN_PAGE + version
+                page = INNER_MAIN_PAGE + version
                 web = urllib.urlopen(page).readlines()
                 for line in web:
                     if '.tar' in line:
                         tar = find_tar(num, line)
                         if tar:
                             debug('tar=%s' % tar)
-                            url = MAIN_PAGE + version + '/' + tar
+                            url = INNER_MAIN_PAGE + version + '/' + tar
                             debug('url=%s' % url)
                             if not os.path.exists(tar):
                                 to_download_file(url)
@@ -41,8 +41,21 @@ def flash_phone():
                             break
         else:
             debug('Did not find this version.')
-    except IOError, err:
-        debug(err)
+    except IOError, err1:
+        debug(err1)
+        debug('Inner web is down.Try to get file from outer.')
+        file_name = str(raw_input('Pls input filename:\n').strip('\r').strip('n'))
+        try:
+            url = OUTER_MAIN_PAGE + version + '/' + file_name
+            web = urllib.urlopen(url).code
+            if web == 200:
+                to_download_file(url)
+            else:
+                debug('url=%s' % url)
+                debug('Did not find this file.')
+        except IOError, err2:
+            debug(err2)
+            debug('Did not find this file.')
 
 
 def find_tar(num, line):
