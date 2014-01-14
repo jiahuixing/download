@@ -43,7 +43,7 @@ IMAGES_SUF = r'_4.[0-9]{1}_[a-zA-Z0-9]{10}.tar'
 #################################################Another#############################################################
 global conn, cursor
 
-DB_INFO = {
+MY_DB_INFO = {
     'host': 'localhost',
     'user': 'root',
     'passwd': '',

@@ -166,15 +166,15 @@ def get_info(info, list_name):
     return m_info
 
 
-def connect_to_db(dbinfo=DB_INFO):
+def connect_to_db(dbinfo=MY_DB_INFO):
     """
 
     @param dbinfo:
     """
     global conn, cursor
-    my_host = DB_INFO['host']
-    my_user = DB_INFO['user']
-    my_passwd = DB_INFO['passwd']
+    my_host = MY_DB_INFO['host']
+    my_user = MY_DB_INFO['user']
+    my_passwd = MY_DB_INFO['passwd']
     conn = MySQLdb.connect(host=my_host, user=my_user, passwd=my_passwd, db="test", charset="utf8")
     cursor = conn.cursor()
 
