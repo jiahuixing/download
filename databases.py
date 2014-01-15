@@ -2,12 +2,13 @@ __author__ = 'jiahuixing'
 # -*- coding: utf-8 -*-
 
 import logging
+from time import sleep
 
 import config as conf
 import MySQLdb
 import _mysql_exceptions
 
-from commonLib import *
+from commonLib import debug
 
 
 class Databases():
@@ -76,7 +77,7 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            time.sleep(60)
+            sleep(60)
             self.__reconnect_to_write_db()
 
     def __reconnect_to_read_db(self):
@@ -93,7 +94,7 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            time.sleep(60)
+            sleep(60)
             self.__reconnect_to_read_db()
 
     def query(self, sql, args=None):
