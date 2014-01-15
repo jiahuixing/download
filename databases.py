@@ -11,6 +11,9 @@ from commonLib import *
 
 
 class Databases():
+    __conn_w = None
+    __conn_r = None
+
     def __init__(self, db, host_w, port_w, user_w, passwd_w, host_r=None, port_r=None, user_r=None, passwd_r=None):
         self.__db = db
         self.__host_w = host_w
@@ -97,6 +100,7 @@ class Databases():
         cursor = self.__conn_r.cursor()
         try:
             count = cursor.execute(sql, args)
+            debug('count=%s' % count)
         except _mysql_exceptions.OperationalError, connect_error:
             logging.error("Exception %s, sql = %s, args = %s" % (connect_error, sql, args))
             if connect_error[0] == 2006:
@@ -124,6 +128,7 @@ class Databases():
         cursor = self.__conn_w.cursor()
         try:
             affects = cursor.execute(sql, args)
+            debug('affects=%s' % affects)
         except _mysql_exceptions.OperationalError, connect_error:
             logging.error("Exception %s , sql = %s , args = %s" % (connect_error, sql, args))
             if connect_error[0] == 2006:
@@ -136,11 +141,11 @@ class Databases():
             if conf.raise_exception:
                 raise
 
-    def my_escape(self, str):
+    def my_escape(self, string):
         """
 
         @param self:
-        @param str:
+        @param string:
         @return:
         """
-        return self.__conn_w.escape_string(str)
+        return self.__conn_w.escape_string(string)
