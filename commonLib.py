@@ -6,9 +6,6 @@ import sys
 import time
 import os
 
-#3rd party lib
-import MySQLdb
-
 #my lib
 from Info import *
 
@@ -164,25 +161,4 @@ def get_info(info, list_name):
         m_info = '%s%s:%s%s' % (m_info, index, mem, wrap)
 
     return m_info
-
-
-def connect_to_db(dbinfo=MY_DB_INFO):
-    """
-
-    @param dbinfo:
-    """
-    global conn, cursor
-    my_host = MY_DB_INFO['host']
-    my_user = MY_DB_INFO['user']
-    my_passwd = MY_DB_INFO['passwd']
-    conn = MySQLdb.connect(host=my_host, user=my_user, passwd=my_passwd, db="test", charset="utf8")
-    cursor = conn.cursor()
-
-
-def close_db():
-    """
-
-
-    """
-    conn.close()
 
