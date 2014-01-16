@@ -48,7 +48,6 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            raise
             return "%s:%s %s" % (self.__host_w, self.__port_w, self.__db)
 
         try:
@@ -60,7 +59,6 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            raise
             return "%s:%s %s " % (self.__host_r, self.__port_r, self.__db)
 
         return True
@@ -106,11 +104,9 @@ class Databases():
                 self.__reconnect_to_read_db()
                 return self.query(sql, args)
             else:
-                raise
-            return ()
+                return ()
         except Exception, e:
             logging.error("Exception %s , sql = %s, args = %s" % (e, sql, args))
-            raise
             return ()
 
         return cursor.fetchall()
