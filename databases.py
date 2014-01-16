@@ -4,11 +4,11 @@ __author__ = 'jiahuixing'
 import logging
 from time import sleep
 
-import config as conf
+#import config as conf
 import MySQLdb
 import _mysql_exceptions
 
-from commonLib import debug
+from commonLib import debug as debug
 
 
 class Databases():
@@ -48,8 +48,7 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            if conf.raise_exception:
-                raise
+            raise
             return "%s:%s %s" % (self.__host_w, self.__port_w, self.__db)
 
         try:
@@ -61,8 +60,7 @@ class Databases():
                                             charset='utf8')
         except Exception, e:
             logging.error(e)
-            if conf.raise_exception:
-                raise
+            raise
             return "%s:%s %s " % (self.__host_r, self.__port_r, self.__db)
 
         return True
@@ -107,13 +105,12 @@ class Databases():
             if connect_error[0] == 2006:
                 self.__reconnect_to_read_db()
                 return self.query(sql, args)
-            elif conf.raise_exception:
+            else:
                 raise
             return ()
         except Exception, e:
             logging.error("Exception %s , sql = %s, args = %s" % (e, sql, args))
-            if conf.raise_exception:
-                raise
+            raise
             return ()
 
         return cursor.fetchall()
@@ -135,12 +132,11 @@ class Databases():
             if connect_error[0] == 2006:
                 self.__reconnect_to_write_db()
                 self.execute(sql, args)
-            elif conf.raise_exception:
+            else:
                 raise
         except Exception, e:
             logging.error("Exception %s, sql = %s, args = %s" % (e, sql, args))
-            if conf.raise_exception:
-                raise
+            raise
 
     def my_escape(self, string):
         """
